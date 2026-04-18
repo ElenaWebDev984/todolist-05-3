@@ -37,6 +37,7 @@ export const App = () => {
             {id: v1(), title: 'Meat', isDone: true},
             {id: v1(), title: 'Milk', isDone: false},
         ],
+        [todolistId_3]: []
     })
 
 
@@ -72,9 +73,21 @@ export const App = () => {
     const deleteTodolist = (todolistId: string) => {
         setTodolists(todolists.filter(tl => tl.id !== todolistId))
         const copyTasksState = {...tasks}
-        delete tasks[todolistId]
+        delete copyTasksState[todolistId]
         setTasks(copyTasksState)
     }
+
+    const createTodolist = (title: TodolistType['title']) => {
+        const newTodo: TodolistType = {
+            id: v1(),
+            title: title,
+            filter: 'all',
+        }
+        setTodolists([...todolists, newTodo])
+        setTasks({...tasks, [newTodo.id]: []})
+    }
+
+
 
     const todolistsComponents = todolists.map(tl => {
         return (
