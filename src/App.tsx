@@ -71,7 +71,7 @@ export const App = () => {
     }
 
     const changeFilter = (filter: FilterValues, todolistId: string) => {
-        setFilter(filter)
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
 
     let filteredTasks = tasks
