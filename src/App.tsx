@@ -46,10 +46,12 @@ export const App = () => {
 
 
     const deleteTask = (taskId: Task['id'], todolistId: string) => {
-        const tasksForDelete = tasks[todolistId]
-        const tasksForTodolist = tasksForDelete.filter(t => t.id !== taskId)
-        const nextState = {...tasks, [todolistId]: tasksForTodolist}
-        setTasks(nextState)
+        // const tasksForDelete = tasks[todolistId]
+        // const tasksForTodolist = tasksForDelete.filter(t => t.id !== taskId)
+        // const nextState = {...tasks, [todolistId]: tasksForTodolist}
+        // setTasks(nextState)
+
+        setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id !== taskId)})
     }
 
     const changeFilter = (filter: FilterValues, todolistId: string) => {
