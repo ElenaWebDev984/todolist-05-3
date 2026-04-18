@@ -1,13 +1,8 @@
 import './App.css'
 import {useState} from 'react'
 import {v1} from 'uuid'
-import {TodolistItem} from './TodolistItem'
-
-export type Task = {
-    id: string
-    title: string
-    isDone: boolean
-}
+import {Task, TodolistItem} from './TodolistItem'
+import {getTasksForRender} from "./utils.ts";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -74,26 +69,32 @@ export const App = () => {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
 
-    let filteredTasks = tasks
-    if (filter === 'active') {
-        filteredTasks = tasks.filter(task => !task.isDone)
+    const deleteTodolist = (todolistId: string) => {
+        setTodolists(todolists.filter(tl => tl.id !== todolistId))
+        const copyTasksState = {...tasks}
+        delete tasks[todolistId]
+        setTasks(copyTasksState)
     }
-    if (filter === 'completed') {
-        filteredTasks = tasks.filter(task => task.isDone)
-    }
 
-
-
-
-    return (
-        <div className="app">
-            <TodolistItem title="What to learn"
-                          tasks={filteredTasks}
+    const todolistsComponents = todolists.map(tl => {
+        return (
+            <TodolistItem key={tl.id}
+                          id={tl.id}
+                          title={tl.title}
+                          tasks={getTasksForRender(tasks[tl.id], tl.filter)}
                           deleteTask={deleteTask}
                           changeFilter={changeFilter}
                           createTask={createTask}
                           changeTaskStatus={changeTaskStatus}
-                          filter={filter}/>
+                          filter={tl.filter}
+                          deleteTodolist={deleteTodolist}/>
+        )
+    })
+
+
+    return (
+        <div className="app">
+            {todolistsComponents}
         </div>
     )
 }
