@@ -3,6 +3,7 @@ import {useState} from 'react'
 import {v1} from 'uuid'
 import {Task, TodolistItem} from './TodolistItem'
 import {getTasksForRender} from "./utils.ts";
+import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -37,7 +38,6 @@ export const App = () => {
             {id: v1(), title: 'Meat', isDone: true},
             {id: v1(), title: 'Milk', isDone: false},
         ],
-        [todolistId_3]: []
     })
 
 
@@ -107,6 +107,7 @@ export const App = () => {
 
     return (
         <div className="app">
+            <CreateItemTitleForm createTitle={createTodolist}/>
             {todolistsComponents}
         </div>
     )
