@@ -62,6 +62,14 @@ export const App = () => {
         setTasks({...tasks, [todolistId]: [...tasks[todolistId], newTask]})
     }
 
+    const changeTaskStatus = (taskId: Task['id'], isDone: Task['isDone'], todolistId: string) => {
+        // const tasksForUpdate = tasks[todolistId]
+        // const tasksForTodolists = tasksForUpdate.map(t => t.id === taskId ? {...t, isDone } : t)
+        // const nextState = {...tasks, [todolistId]: tasksForTodolists}
+        // setTasks(nextState)
+        setTasks({...tasks, [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, isDone} : t)})
+    }
+
     const changeFilter = (filter: FilterValues, todolistId: string) => {
         setFilter(filter)
     }
@@ -75,10 +83,7 @@ export const App = () => {
     }
 
 
-    const changeTaskStatus = (taskId: Task['id'], isDone: Task['isDone'], todolistId: string) => {
-        const newState = tasks.map(task => task.id == taskId ? {...task, isDone} : task)
-        setTasks(newState)
-    }
+
 
     return (
         <div className="app">
