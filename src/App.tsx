@@ -78,15 +78,16 @@ export const App = () => {
     }
 
     const createTodolist = (title: TodolistType['title']) => {
+        const newTodolistId = v1()
+
         const newTodo: TodolistType = {
-            id: v1(),
+            id: newTodolistId,
             title: title,
             filter: 'all',
         }
         setTodolists([...todolists, newTodo])
         setTasks({...tasks, [newTodo.id]: []})
     }
-
 
 
     const todolistsComponents = todolists.map(tl => {
@@ -107,7 +108,9 @@ export const App = () => {
 
     return (
         <div className="app">
-            <CreateItemTitleForm createTitle={createTodolist}/>
+            <CreateItemTitleForm createTitle={createTodolist}
+                                 maxTitleLength={10}
+                                 minTitleLength={3}/>
             {todolistsComponents}
         </div>
     )
