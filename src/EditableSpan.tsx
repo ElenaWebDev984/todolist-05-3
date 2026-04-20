@@ -20,9 +20,15 @@ export const EditableSpan = ({title, createItemTitle}: EditableSpanType) => {
     return (
         isEdit
             ? <input
+                autoFocus
                 onBlur={offEdit}
                 value={itemTitle}
                 onChange={e => setItemTitle(e.target.value)}
+                onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                        offEdit()
+                    }
+                }}
             />
             : <span onDoubleClick={onEdit}>{title}</span>
     );
