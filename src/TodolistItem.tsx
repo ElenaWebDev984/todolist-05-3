@@ -1,6 +1,7 @@
 import {type ChangeEvent} from 'react'
 import {FilterValues, TodolistType} from './App'
-import {Button} from './Button'
+// import {Button} from './Button'
+import Button from '@mui/material/Button';
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
@@ -44,7 +45,7 @@ export const TodolistItem = (props: Props) => {
     const tasksForRender = getTasksForRender(tasks, filter)
 
     const createTaskHandler = (taskTitle: Task['title']) => {
-            createTask(taskTitle, id)
+        createTask(taskTitle, id)
     }
 
     const changeTodolistTitleHandler = (title: string) => changeTodolistTitle(title, id)
@@ -99,6 +100,31 @@ export const TodolistItem = (props: Props) => {
                 </ul>
             )}
             <div>
+                <Button variant={'contained'}
+                        size={'small'}
+                        onClick={() => changeTodolistFilter('all', id)}
+                        disableElevation
+                        color={filter === 'all' ? 'secondary' : 'primary'}
+                >
+                    All
+                </Button>
+                <Button variant={'contained'}
+                        size={'small'}
+                        onClick={() => changeTodolistFilter('active', id)}
+                        disableElevation
+                        color={filter === 'active' ? 'secondary' : 'primary'}
+                >
+                    Active
+                </Button>
+                <Button variant={'contained'}
+                        size={'small'}
+                        onClick={() => changeTodolistFilter('completed', id)}
+                        disableElevation
+                        color={filter === 'completed' ? 'secondary' : 'primary'}
+                >
+                    Completed
+                </Button>
+
                 <Button className={filter === 'all' ? 'active-filter' : ''}
                         title={'All'}
                         onClick={() => changeTodolistFilter('all', id)}/>
