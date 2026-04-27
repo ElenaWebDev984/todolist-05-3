@@ -27,8 +27,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       uuid:
-        specifier: 11.0.3
-        version: 11.0.3
+        specifier: 14.0.0
+        version: 14.0.0
     devDependencies:
       '@types/react':
         specifier: 19.0.2
@@ -1090,8 +1090,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  uuid@11.0.3:
-    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
+  uuid@14.0.0:
+    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
     hasBin: true
 
   vite-node@2.1.8:
@@ -2086,7 +2086,7 @@ snapshots:
 
   typescript@5.7.2: {}
 
-  uuid@11.0.3: {}
+  uuid@14.0.0: {}
 
   vite-node@2.1.8:
     dependencies:
