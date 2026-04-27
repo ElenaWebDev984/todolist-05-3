@@ -7,6 +7,7 @@ import {EditableSpan} from "./EditableSpan.tsx";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CancelIcon from '@mui/icons-material/Cancel';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 
@@ -61,9 +62,12 @@ export const TodolistItem = (props: Props) => {
                 <EditableSpan title={title}
                               createItemTitle={changeTodolistTitleHandler}
                 />
-                <Button title='X'
-                        onClick={() => deleteTodolist(id)}
-                />
+                <IconButton
+                    size={'large'}
+                    onClick={() => deleteTodolist(id)}
+                >
+                    <DeleteForeverIcon/>
+                </IconButton>
             </h3>
 
             <CreateItemTitleForm createTitle={createTaskHandler}/>
@@ -94,9 +98,6 @@ export const TodolistItem = (props: Props) => {
                                 />
                                 <EditableSpan title={task.title}
                                               createItemTitle={changeTaskTitleHandler}
-                                />
-                                <Button title={'x'}
-                                        onClick={deleteTaskHandler}
                                 />
 
                                 <IconButton
@@ -134,16 +135,6 @@ export const TodolistItem = (props: Props) => {
                 >
                     Completed
                 </Button>
-
-                <Button className={filter === 'all' ? 'active-filter' : ''}
-                        title={'All'}
-                        onClick={() => changeTodolistFilter('all', id)}/>
-                <Button className={filter === 'active' ? 'active-filter' : ''}
-                        title={'Active'}
-                        onClick={() => changeTodolistFilter('active', id)}/>
-                <Button className={filter === 'completed' ? 'active-filter' : ''}
-                        title={'Completed'}
-                        onClick={() => changeTodolistFilter('completed', id)}/>
             </div>
         </div>
     )
