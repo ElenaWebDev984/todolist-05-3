@@ -1,10 +1,14 @@
 import {type ChangeEvent} from 'react'
 import {FilterValues, TodolistType} from './App'
-// import {Button} from './Button'
-import Button from '@mui/material/Button';
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
+// import {Button} from './Button'
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CancelIcon from '@mui/icons-material/Cancel';
+
+
 
 export type Task = {
     id: string
@@ -94,6 +98,12 @@ export const TodolistItem = (props: Props) => {
                                 <Button title={'x'}
                                         onClick={deleteTaskHandler}
                                 />
+
+                                <IconButton
+                                    onClick={deleteTaskHandler}
+                                >
+                                    <CancelIcon/>
+                                </IconButton>
                             </li>
                         )
                     })}
