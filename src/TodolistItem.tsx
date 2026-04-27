@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Checkbox from '@mui/material/Checkbox';
+import {ListItem} from "@mui/material";
 
 
 export type Task = {
@@ -89,8 +90,9 @@ export const TodolistItem = (props: Props) => {
                         const changeTaskTitleHandler = (title: string) => changeTaskTitle(task.id, title, id)
 
                         return (
-                            <li key={task.id}
+                            <ListItem key={task.id}
                                 className={task.isDone ? 'is-done' : ''}
+                                      disablePadding
                             >
                                 <Checkbox
                                     size={'small'}
@@ -108,7 +110,7 @@ export const TodolistItem = (props: Props) => {
                                 >
                                     <CancelIcon/>
                                 </IconButton>
-                            </li>
+                            </ListItem>
                         )
                     })}
                 </ul>
