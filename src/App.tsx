@@ -104,21 +104,23 @@ export const App = () => {
 
     const todolistsComponents = todolists.map(tl => {
         return (
-            <Paper elevation={6}>
-                <TodolistItem key={tl.id}
-                              id={tl.id}
-                              title={tl.title}
-                              tasks={getTasksForRender(tasks[tl.id], tl.filter)}
-                              deleteTask={deleteTask}
-                              changeTodolistFilter={changeTodolistFilter}
-                              createTask={createTask}
-                              changeTaskStatus={changeTaskStatus}
-                              filter={tl.filter}
-                              deleteTodolist={deleteTodolist}
-                              changeTodolistTitle={changeTodolistTitle}
-                              changeTaskTitle={changeTaskTitle}
-                />
-            </Paper>
+            <Grid>
+                <Paper elevation={6}>
+                    <TodolistItem key={tl.id}
+                                  id={tl.id}
+                                  title={tl.title}
+                                  tasks={getTasksForRender(tasks[tl.id], tl.filter)}
+                                  deleteTask={deleteTask}
+                                  changeTodolistFilter={changeTodolistFilter}
+                                  createTask={createTask}
+                                  changeTaskStatus={changeTaskStatus}
+                                  filter={tl.filter}
+                                  deleteTodolist={deleteTodolist}
+                                  changeTodolistTitle={changeTodolistTitle}
+                                  changeTaskTitle={changeTaskTitle}
+                    />
+                </Paper>
+            </Grid>
         )
     })
 
@@ -139,7 +141,7 @@ export const App = () => {
                                          maxTitleLength={10}
                                          minTitleLength={3}/>
                 </Grid>
-                <Grid container>
+                <Grid container spacing={4}>
                     {todolistsComponents}
                 </Grid>
             </Container>
