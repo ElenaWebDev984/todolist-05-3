@@ -2,6 +2,7 @@
 import {type ChangeEvent, useState, type KeyboardEvent} from "react";
 import IconButton from "@mui/material/IconButton";
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import TextField from '@mui/material/TextField';
 
 type CreateItemTitleFormType = {
     createTitle: (title: string) => void
@@ -39,17 +40,20 @@ export const CreateItemTitleForm = ({createTitle}: CreateItemTitleFormType) => {
 
     return (
         <div>
-            <input className={error ? 'error' : ''}
-                   value={titleInputValue}
-                   onChange={changeTitleInputHandler}
-                   onKeyDown={createTaskOnEnterHandler}
+            <TextField
+                size={"small"}
+                className={error ? 'error' : ''}
+                value={titleInputValue}
+                onChange={changeTitleInputHandler}
+                onKeyDown={createTaskOnEnterHandler}
+                helperText={error && 'Enter valid title'}
             />
             <IconButton
-                size={'large'}
+                size={'small'}
                 onClick={createTitleHandler}
                 disabled={!titleInputValue}
             >
-                <AddBoxIcon/>
+                <AddBoxIcon fontSize={'large'}/>
             </IconButton>
             {error && <div className={'error-message'}>{error}</div>}
             {/*{!error && titleInputValue.length < minTitleLength && <div>Min title length is {minTitleLength} characters</div>}*/}
