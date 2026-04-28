@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Checkbox from '@mui/material/Checkbox';
-import {ListItem} from "@mui/material";
+import {List, ListItem} from "@mui/material";
 
 
 export type Task = {
@@ -76,7 +76,7 @@ export const TodolistItem = (props: Props) => {
             {tasksForRender.length === 0 ? (
                 <p>Тасок нет</p>
             ) : (
-                <ul>
+                <List>
                     {tasks.map(task => {
                         const deleteTaskHandler = () => {
                             deleteTask(task.id, id)
@@ -113,7 +113,7 @@ export const TodolistItem = (props: Props) => {
                             </ListItem>
                         )
                     })}
-                </ul>
+                </List>
             )}
             <div>
                 <Button variant={'contained'}
