@@ -4,7 +4,7 @@ import {v1} from 'uuid'
 import {Task, TodolistItem} from './TodolistItem'
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
-import {AppBar, Container, Grid, Toolbar} from "@mui/material";
+import {AppBar, Container, Grid, Paper, Toolbar} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -104,19 +104,21 @@ export const App = () => {
 
     const todolistsComponents = todolists.map(tl => {
         return (
-            <TodolistItem key={tl.id}
-                          id={tl.id}
-                          title={tl.title}
-                          tasks={getTasksForRender(tasks[tl.id], tl.filter)}
-                          deleteTask={deleteTask}
-                          changeTodolistFilter={changeTodolistFilter}
-                          createTask={createTask}
-                          changeTaskStatus={changeTaskStatus}
-                          filter={tl.filter}
-                          deleteTodolist={deleteTodolist}
-                          changeTodolistTitle={changeTodolistTitle}
-                          changeTaskTitle={changeTaskTitle}
-            />
+            <Paper elevation={6}>
+                <TodolistItem key={tl.id}
+                              id={tl.id}
+                              title={tl.title}
+                              tasks={getTasksForRender(tasks[tl.id], tl.filter)}
+                              deleteTask={deleteTask}
+                              changeTodolistFilter={changeTodolistFilter}
+                              createTask={createTask}
+                              changeTaskStatus={changeTaskStatus}
+                              filter={tl.filter}
+                              deleteTodolist={deleteTodolist}
+                              changeTodolistTitle={changeTodolistTitle}
+                              changeTaskTitle={changeTaskTitle}
+                />
+            </Paper>
         )
     })
 
