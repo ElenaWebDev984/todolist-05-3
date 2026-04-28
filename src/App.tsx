@@ -4,7 +4,7 @@ import {v1} from 'uuid'
 import {Task, TodolistItem} from './TodolistItem'
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
-import {AppBar, Toolbar} from "@mui/material";
+import {AppBar, Container, Grid, Toolbar} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -131,10 +131,17 @@ export const App = () => {
                     <Button color={'inherit'}>Sign in</Button>
                 </Toolbar>
             </AppBar>
-            <CreateItemTitleForm createTitle={createTodolist}
-                                 maxTitleLength={10}
-                                 minTitleLength={3}/>
-            {todolistsComponents}
+            <Container maxWidth={'lg'}>
+                <Grid container>
+                    <CreateItemTitleForm createTitle={createTodolist}
+                                         maxTitleLength={10}
+                                         minTitleLength={3}/>
+                </Grid>
+                <Grid container>
+                    {todolistsComponents}
+                </Grid>
+            </Container>
+
         </div>
     )
 }

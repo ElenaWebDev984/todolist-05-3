@@ -41,7 +41,7 @@ export const CreateItemTitleForm = ({createTitle}: CreateItemTitleFormType) => {
     return (
         <div>
             <TextField
-                variant={'standard'}
+                // variant={'standard'}
                 size={"small"}
                 className={error ? 'error' : ''}
                 value={titleInputValue}
