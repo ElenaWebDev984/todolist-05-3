@@ -4,6 +4,10 @@ import {v1} from 'uuid'
 import {Task, TodolistItem} from './TodolistItem'
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
+import {AppBar, Toolbar} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import MenuIcon from '@mui/icons-material/Menu';
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -119,6 +123,14 @@ export const App = () => {
 
     return (
         <div className="app">
+            <AppBar position={'static'}>
+                <Toolbar>
+                    <IconButton color={'inherit'}>
+                        <MenuIcon/>
+                    </IconButton>
+                    <Button color={'inherit'}>Sign in</Button>
+                </Toolbar>
+            </AppBar>
             <CreateItemTitleForm createTitle={createTodolist}
                                  maxTitleLength={10}
                                  minTitleLength={3}/>
