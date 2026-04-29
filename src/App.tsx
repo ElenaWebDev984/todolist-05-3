@@ -4,11 +4,22 @@ import {v1} from 'uuid'
 import {Task, TodolistItem} from './TodolistItem'
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
-import {AppBar, Container, Grid, Paper, Toolbar, Typography} from "@mui/material";
+import {
+    AppBar,
+    Container,
+    createTheme,
+    CssBaseline,
+    Grid,
+    Paper,
+    ThemeProvider,
+    Toolbar,
+    Typography
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 // import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
 import {NavButton} from "./NavButton.ts";
+import {pink, teal} from "@mui/material/colors";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -125,37 +136,47 @@ export const App = () => {
     })
 
 
+const theme = createTheme({
+    palette: {
+        primary: teal,
+        secondary: pink,
+        mode: 'dark',
+    },
+})
+
     return (
         <div className="app">
-            <AppBar position={'static'}>
-                <Toolbar>
-                    <IconButton color={'inherit'}
-                                size={'large'}
-                                edge={'start'}
-                                aria-label={'menu'}
-                                sx={{mr: 2}}
-                    >
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography align={'center'} variant={'h6'} component={'div'} sx={{flexGrow: 1}}>
-                        TODOLISTS
-                    </Typography>
-                    <NavButton background={'#dc148f'}>FAQ</NavButton>
-                    <NavButton>Login</NavButton>
-                    <NavButton>Logout</NavButton>
-                </Toolbar>
-            </AppBar>
-            <Container maxWidth={'lg'}>
-                <Grid container sx={{p: '20px 0'}}>
-                    <CreateItemTitleForm createTitle={createTodolist}
-                                         maxTitleLength={10}
-                                         minTitleLength={3}/>
-                </Grid>
-                <Grid container spacing={4}>
-                    {todolistsComponents}
-                </Grid>
-            </Container>
-
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <AppBar position={'static'}>
+                    <Toolbar>
+                        <IconButton color={'inherit'}
+                                    size={'large'}
+                                    edge={'start'}
+                                    aria-label={'menu'}
+                                    sx={{mr: 2}}
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography align={'center'} variant={'h6'} component={'div'} sx={{flexGrow: 1}}>
+                            TODOLISTS
+                        </Typography>
+                        <NavButton background={`${theme.palette.secondary.dark}`}>FAQ</NavButton>
+                        <NavButton>Login</NavButton>
+                        <NavButton>Logout</NavButton>
+                    </Toolbar>
+                </AppBar>
+                <Container maxWidth={'lg'}>
+                    <Grid container sx={{p: '20px 0'}}>
+                        <CreateItemTitleForm createTitle={createTodolist}
+                                             maxTitleLength={10}
+                                             minTitleLength={3}/>
+                    </Grid>
+                    <Grid container spacing={4}>
+                        {todolistsComponents}
+                    </Grid>
+                </Container>
+            </ThemeProvider>
         </div>
     )
 }
