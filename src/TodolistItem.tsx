@@ -9,7 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Checkbox from '@mui/material/Checkbox';
-import {List, ListItem} from "@mui/material";
+import {Box, List, ListItem, Typography} from "@mui/material";
+import {containerSx, getListItemSx} from "./Todolist.styles.ts";
 
 
 export type Task = {
@@ -58,18 +59,24 @@ export const TodolistItem = (props: Props) => {
 
 
     return (
-        <div>
-            <h3>
-                <EditableSpan title={title}
-                              createItemTitle={changeTodolistTitleHandler}
-                />
-                <IconButton
-                    size={'large'}
-                    onClick={() => deleteTodolist(id)}
-                >
-                    <DeleteForeverIcon/>
-                </IconButton>
-            </h3>
+        <Box>
+            <Typography align={'center'}
+                        variant={'h5'}
+                        sx={{fontWeight: 'bold'}}
+            >
+                <Box>
+                    <EditableSpan title={title}
+                                  createItemTitle={changeTodolistTitleHandler}
+                    />
+
+                    <IconButton
+                        size={'large'}
+                        onClick={() => deleteTodolist(id)}
+                    >
+                        <DeleteForeverIcon/>
+                    </IconButton>
+                </Box>
+            </Typography>
 
             <CreateItemTitleForm createTitle={createTaskHandler}/>
 
@@ -91,20 +98,24 @@ export const TodolistItem = (props: Props) => {
 
                         return (
                             <ListItem key={task.id}
-                                className={task.isDone ? 'is-done' : ''}
+                                      sx={containerSx}
+                                      className={task.isDone ? 'is-done' : ''}
                                       disablePadding
                             >
-                                <Checkbox
-                                    size={'small'}
-                                    checked={task.isDone}
-                                    onChange={changeTaskStatusHandler}
-                                >
+                                <Box sx={{display: 'flex', alignItems: 'center'}}>
+                                    <Checkbox
+                                        size={'small'}
+                                        checked={task.isDone}
+                                        onChange={changeTaskStatusHandler}
+                                    >
 
-                                </Checkbox>
-                                <EditableSpan title={task.title}
-                                              createItemTitle={changeTaskTitleHandler}
-                                />
-
+                                    </Checkbox>
+                                    <Box sx={getListItemSx(task.isDone)}>
+                                        <EditableSpan title={task.title}
+                                                      createItemTitle={changeTaskTitleHandler}
+                                        />
+                                    </Box>
+                                </Box>
                                 <IconButton
                                     onClick={deleteTaskHandler}
                                 >
@@ -115,7 +126,7 @@ export const TodolistItem = (props: Props) => {
                     })}
                 </List>
             )}
-            <div>
+            <Box sx={containerSx}>
                 <Button variant={'contained'}
                         size={'small'}
                         onClick={() => changeTodolistFilter('all', id)}
@@ -140,7 +151,7 @@ export const TodolistItem = (props: Props) => {
                 >
                     Completed
                 </Button>
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }

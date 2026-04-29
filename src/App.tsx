@@ -4,10 +4,11 @@ import {v1} from 'uuid'
 import {Task, TodolistItem} from './TodolistItem'
 import {getTasksForRender} from "./utils.ts";
 import {CreateItemTitleForm} from "./CreateItemTitleForm.tsx";
-import {AppBar, Container, Grid, Paper, Toolbar} from "@mui/material";
+import {AppBar, Container, Grid, Paper, Toolbar, Typography} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
+import {NavButton} from "./NavButton.ts";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -104,10 +105,9 @@ export const App = () => {
 
     const todolistsComponents = todolists.map(tl => {
         return (
-            <Grid>
-                <Paper elevation={6}>
-                    <TodolistItem key={tl.id}
-                                  id={tl.id}
+            <Grid key={tl.id}>
+                <Paper elevation={6} sx={{padding: '20px'}}>
+                    <TodolistItem id={tl.id}
                                   title={tl.title}
                                   tasks={getTasksForRender(tasks[tl.id], tl.filter)}
                                   deleteTask={deleteTask}
@@ -129,14 +129,24 @@ export const App = () => {
         <div className="app">
             <AppBar position={'static'}>
                 <Toolbar>
-                    <IconButton color={'inherit'}>
+                    <IconButton color={'inherit'}
+                                size={'large'}
+                                edge={'start'}
+                                aria-label={'menu'}
+                                sx={{mr: 2}}
+                    >
                         <MenuIcon/>
                     </IconButton>
-                    <Button color={'inherit'}>Sign in</Button>
+                    <Typography align={'center'} variant={'h6'} component={'div'} sx={{flexGrow: 1}}>
+                        TODOLISTS
+                    </Typography>
+                    <NavButton background={'#dc148f'}>FAQ</NavButton>
+                    <NavButton>Login</NavButton>
+                    <NavButton>Logout</NavButton>
                 </Toolbar>
             </AppBar>
             <Container maxWidth={'lg'}>
-                <Grid container>
+                <Grid container sx={{p: '20px 0'}}>
                     <CreateItemTitleForm createTitle={createTodolist}
                                          maxTitleLength={10}
                                          minTitleLength={3}/>
