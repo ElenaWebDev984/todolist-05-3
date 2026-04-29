@@ -10,7 +10,7 @@ import {
     createTheme,
     CssBaseline,
     Grid,
-    Paper,
+    Paper, Switch,
     ThemeProvider,
     Toolbar,
     Typography
@@ -136,13 +136,15 @@ export const App = () => {
     })
 
 
-const theme = createTheme({
-    palette: {
-        primary: teal,
-        secondary: pink,
-        mode: 'dark',
-    },
-})
+    const [isDark,setIsDark] = useState(false)
+
+    const theme = createTheme({
+        palette: {
+            primary: teal,
+            secondary: pink,
+            mode: isDark ? 'dark' : 'light',
+        },
+    })
 
     return (
         <div className="app">
@@ -164,6 +166,7 @@ const theme = createTheme({
                         <NavButton background={`${theme.palette.secondary.dark}`}>FAQ</NavButton>
                         <NavButton>Login</NavButton>
                         <NavButton>Logout</NavButton>
+                        <Switch onChange={() => setIsDark(!isDark)}/>
                     </Toolbar>
                 </AppBar>
                 <Container maxWidth={'lg'}>
