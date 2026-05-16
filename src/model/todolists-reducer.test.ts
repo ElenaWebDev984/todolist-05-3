@@ -14,8 +14,7 @@ test('correct todolist should be deleted', () => {
     ]
 
     // 2. Действие
-    const action = deleteTodolistAC(todolistId1)
-    const endState = todolistsReducer(startState, action)
+    const endState = todolistsReducer(startState, deleteTodolistAC(todolistId1))
 
     // 3. Проверка, что действие изменило state соответствующим образом
     // в массиве останется один тудулист
