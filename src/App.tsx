@@ -91,7 +91,7 @@ export const App = () => {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
 
-    const changeTodolistTitle = (title: TodolistType['title'], todolistId: string) => {
+    const changeTodolistTitle = (title: TodolistType['title'], todolistId: TodolistType['id']) => {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title} : tl))
     }
 
