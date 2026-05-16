@@ -56,7 +56,7 @@ export const App = () => {
         ],
     })
 
-
+    // tasks
     const deleteTask = (taskId: Task['id'], todolistId: string) => {
         // const tasksForDelete = tasks[todolistId]
         // const tasksForTodolist = tasksForDelete.filter(t => t.id !== taskId)
@@ -86,6 +86,7 @@ export const App = () => {
         setTasks({...tasks, [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title: title} : t)})
     }
 
+    // todolists
     const changeTodolistFilter = (filter: FilterValues, todolistId: string) => {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
