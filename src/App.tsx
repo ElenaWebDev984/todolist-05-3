@@ -115,8 +115,9 @@ export const App = () => {
     }
 
     const createTodolist = (title: TodolistType['title']) => {
-       dispatchToTodolists(createTodolistAC(title))
-        setTasks({...tasks, [newTodo.id]: []})
+        const action = createTodolistAC(title)
+       dispatchToTodolists(action)
+        setTasks({...tasks, [action.payload.id]: []})
     }
 
 
