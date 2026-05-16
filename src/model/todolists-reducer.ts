@@ -16,3 +16,10 @@ export const todolistsReducer = (todolists: TodolistType[], action: DeleteTodoli
             return todolists
     }
 }
+
+export const deleteTodolistAC = (id: TodolistType['id']) => ({
+    type: 'delete_todolist',
+    payload: {
+        id: id
+    }
+} as const)

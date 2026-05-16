@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {expect, test} from 'vitest'
 import type {TodolistType} from "../App.tsx";
-import {DeleteTodolistAT, todolistsReducer} from "./todolists-reducer.ts";
+import {deleteTodolistAC, todolistsReducer} from "./todolists-reducer.ts";
 
 test('correct todolist should be deleted', () => {
     const todolistId1 = v1()
@@ -14,20 +14,7 @@ test('correct todolist should be deleted', () => {
     ]
 
     // 2. Действие
-    // TODO variant 1 of typification
-    const action: DeleteTodolistAT = {
-        type: 'delete_todolist',
-        payload: {
-            id: todolistId1
-        }
-    }
-    // TODO variant 2 of typification
-    // const action = {
-    //     type: 'delete_todolist' as const,
-    //     payload: {
-    //         id: todolistId1
-    //     }
-    // }
+    const action = deleteTodolistAC(todolistId1)
     const endState = todolistsReducer(startState, action)
 
     // 3. Проверка, что действие изменило state соответствующим образом
