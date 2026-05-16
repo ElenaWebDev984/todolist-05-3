@@ -8,8 +8,12 @@ export type DeleteTodolistAT = {
 }
 
 export const todolistsReducer = (todolists: TodolistType[], action: DeleteTodolistAT): TodolistType[] => {
-    if (action.type === 'delete_todolist') {
-        return todolists.filter(tl => tl.id !== action.payload.id)
+    switch (action.type) {
+        case 'delete_todolist':
+            return todolists.filter(tl => tl.id !== action.payload.id)
+
+        default:
+            break
     }
     return todolists
 }
