@@ -13,7 +13,6 @@ export const todolistsReducer = (todolists: TodolistType[], action: DeleteTodoli
             return todolists.filter(tl => tl.id !== action.payload.id)
 
         default:
-            break
+            return todolists
     }
-    return todolists
 }
