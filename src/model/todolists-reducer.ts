@@ -1,4 +1,5 @@
 import {TodolistType} from "../App.tsx";
+import {v1} from "uuid";
 
 export type DeleteTodolistAT = ReturnType<typeof deleteTodolistAC>
 
@@ -8,6 +9,16 @@ export const todolistsReducer = (todolists: TodolistType[], action: DeleteTodoli
     switch (action.type) {
         case 'delete_todolist':
             return todolists.filter(tl => tl.id !== action.payload.id)
+
+        case 'create_todolist':
+            const newTodolistId = v1()
+
+            const newTodo: TodolistType = {
+                id: newTodolistId,
+                title: action.payload.title,
+                filter: 'all',
+            }
+            return [...todolists, newTodo]
 
         default:
             return todolists
